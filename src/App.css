@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -8,13 +10,322 @@ html, body, #root {
   height: 100vh;
 }
 
-body {
-  background-color: #d0d0e0;
-}
-
 .app {
   height: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  background-color: var(--bg-color);
+  overflow-x: hidden;
+}
+
+.app.light {
+  --header-color: hsl(230, 17%, 14%);
+  --text-color: hsl(228, 12%, 44%);
+  --card-bg-color: hsl(227, 47%, 96%);
+  --card-bg-color-hover: hsl(227, 47%, 92%);
+  --bg-color: hsl(0, 0%, 100%);
+  --bg-color-header: hsl(225, 100%, 98%);
+}
+
+.app.dark {
+  --header-color: hsl(0, 0%, 100%);
+  --text-color: hsl(228, 34%, 66%);
+  --card-bg-color: hsl(228, 28%, 20%);
+  --card-bg-color-hover: hsl(228, 28%, 25%);
+  --bg-color: hsl(230, 17%, 14%);
+  --bg-color-header: hsl(232, 19%, 15%);
+}
+
+.padding {
+  width: 1114px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 30px;
+}
+
+.header {
+  padding-top: 35px;
+  position: relative;
+  z-index: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  height: calc(100% + 155px);
+  --width: min(calc(100vw - 30px), 1440px);
+  width: var(--width);
+  left: calc(50% - 50vw + (100vw - var(--width)) / 2);
+  top: 0;
+  z-index: -1;
+  border-radius: 0% 0% 10px 10px;
+  background-color: var(--bg-color-header);
+  box-shadow: 0px 0px 0px 15px var(--bg-color-header);
+}
+
+.header__left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.header hr {
+  display: none;
+}
+
+.header .title {
+  font-size: 1.75rem;
+  color: var(--header-color);
+}
+
+.header .info {
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+.section-followers {
+  margin-top: 45px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 20px;
+  z-index: 1;
+}
+
+.section-overview {
+  margin-top: 50px;
+}
+
+.section-overview .title {
+  font-size: 1.5rem;
+  color: var(--text-color);
+}
+
+.card {
+  border-radius: 5px;
+  background: var(--card-bg-color);
+  overflow: hidden;
+}
+.card:hover {
+  background: var(--card-bg-color-hover);
+  cursor: pointer;
+}
+
+.follower-card {
+  width: 256px;
+  height: 214px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.follower-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 4px;
+}
+.follower-card[data-category="facebook"]::before {
+  background: hsl(208, 92%, 53%);
+}
+.follower-card[data-category="twitter"]::before {
+  background: hsl(203, 89%, 53%);
+}
+.follower-card[data-category="instagram"]::before {
+  background: linear-gradient(90deg, hsl(37, 97%, 70%), hsl(329, 70%, 58%));
+}
+.follower-card[data-category="youtube"]::before {
+  background: hsl(348, 97%, 39%);
+}
+
+.follower-card .profile {
+  margin-top: 33px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 1.2rem;
+  margin-left: 0.1rem;
+}
+.follower-card .username {
+  margin-top: 0.1rem;
+  font-size: 0.75rem;
+  color: var(--text-color);
+}
+.follower-card .followers_count {
+  margin-top: 20px;
+  font-size: 3.5rem;
+  letter-spacing: -0.15rem;
+  margin-bottom: -2px;
+  color: var(--header-color);
+}
+.follower-card .followers_text {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.3rem;
+  margin-bottom: 25px;
+  color: var(--text-color);
+}
+
+.cards {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 20px;
+}
+
+.small-card {
+  width: 256px;
+  height: 128px;
+  padding: 25px 30px 22px 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.small-card-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.small-card .icon {
+  position: absolute;
+  right: 0;
+}
+.name {
+  font-size: 0.9rem;
+  color: var(--text-color);
+  position: absolute;
+}
+.value {
+  font-size: 2rem;
+  color: var(--header-color);
+  position: absolute;
+  bottom: 0;
+}
+.small-card .difference {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.difference {
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  gap: 3px;
+  color: var(--text-color);
+}
+.difference.up {
+  color: hsl(163, 72%, 41%);
+}
+.difference.down {
+  color: hsl(356, 69%, 56%);
+}
+
+.dark-switch {
+  color: hsl(230, 22%, 74%);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 200ms ease;
+}
+.dark-switch span {
+  margin-bottom: 0.1rem;
+}
+.dark-switch .switch {
+  width: 48px;
+  height: 24px;
+  border-radius: 12px 12px 12px 12px / 12px 12px 12px 12px;
+  background-color: hsl(230, 22%, 74%);
+  position: relative;
+  overflow: hidden;
+}
+.dark-switch .switch-point {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  border-radius: 50%;
+  background: var(--bg-color-header);
+  transform: translate(0px, 0px);
+  transition: transform 300ms ease, box-shadow 300ms ease;
+  box-shadow: 0px 0px 20px 10px transparent, 0px 0px 0px 32px transparent;
+}
+.dark-switch.active .switch-point {
+  transform: translate(24px, 0px);
+}
+.dark-switch:hover .switch-point {
+  background: var(--bg-color);
+}
+.dark-switch:hover {
+  color: var(--text-color);
+  cursor: pointer;
+}
+.dark-switch:hover .switch-point,
+.dark-switch.active .switch-point {
+  box-shadow: 0px 0px 20px 10px hsl(210, 78%, 56%),
+              0px 0px 0px 32px hsl(146, 68%, 55%);
+}
+
+@media only screen and (max-width: 1144px) {
+  .padding {
+    width: 542px;
+  }
+}
+
+@media only screen and (max-width: 572px) {
+  .app {
+    overflow-x: auto;
+  }
+
+  .header {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+
+  .header hr {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    display: block;
+  }
+
+  .header .title {
+    font-size: 1.5rem;
+  }
+  
+  .header .info {
+    font-size: 0.9rem;
+  }
+
+  .dark-switch {
+    justify-content: space-between;
+  }
+
+  .padding {
+    width: calc(86vw);
+  }
+
+  .follower-card {
+    width: 100%;
+  }
+
+  .small-card {
+    width: 100%;
+  }
 }
